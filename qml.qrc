@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>pages/init.qml</file>
+        <file>design/colorPalette.qml</file>
+        <file>design/qmldir</file>
+    </qresource>
+</RCC>
