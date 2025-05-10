@@ -1,8 +1,45 @@
+# Ignorar archivos de entorno virtual
+venv/
+.qtcreator/
+
+# Ignorar archivos de compilación
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# Ignorar archivos generados por PyInstaller
+dist/
+build/
+*.spec
+
+# Ignorar archivos temporales
+*.bak
+*.swp
+*.swo
+
+# Ignorar archivos de configuración de IDEs (como Qt Creator)
+*.pro.user
+*.qbs
+.idea/
+
+# Archivos de log
+*.log
+
+# Archivos de configuración de sistema (como archivos de Mac o Linux)
+.DS_Store
+Thumbs.db
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
+#
+prueba.py
 # C extensions
 *.so
 
