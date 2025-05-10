@@ -1,6 +1,36 @@
 {
     "files": [
         "main.py",
-        "main.qml"
+        "main.qml",
+        "qml.qrc",
+        "design/qmldir",
+        "design/colorPalette.qml",
+        "pages/init.qml",
+        "logic/open_csv"
+    ],
+
+    "resources": [
+        "qml.qrc"
+    ],
+
+    "app_icon": "",
+
+    "python.pythonPath": "python",
+
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+
+
+    "qtcreator.kit": "Desktop Qt 6.x",
+    "qtcreator.runConfiguration": {
+        "type": "script",
+        "scriptPath": "main.py"
+    },
+
+
+    "qtcreator.qmlImportPaths": [
+        ".",
+        ":/design",
+        ":/pages"
     ]
 }
