@@ -2,6 +2,7 @@
 from PySide6.QtCore import QObject, Slot, Signal, Property
 import pandas as pd
 from .table_model import DataFrameModel
+from .analyzer import analizar_csv
 
 class AppLogic_csv(QObject):
     dataLoaded = Signal(str)  # Para confirmar carga o error
@@ -47,3 +48,24 @@ class AppLogic_csv(QObject):
     @Property(QObject, constant=True)
     def tableModel(self):
         return self._model
+
+  
+    resultReady      = Signal(list, list)   # plain, latex
+
+    @Slot()
+    def run_analysis(self):
+        if self.df is None:
+            return
+        temp = "temp.csv"
+        self.df.to_csv(temp, index=False)
+
+        try:
+            res      = analizar_csv(temp)
+            plain    = res["ecuaciones"]
+            latex    = res["ecuacionesLatex"]
+            self._eq_plain = plain           # guarda por si QML quiere leer luego
+            self._eq_latex = latex
+            self.resultReady.emit(plain, latex)
+        except Exception as e:
+            self.resultReady.emit([f"Error: {e}"], [])
+
