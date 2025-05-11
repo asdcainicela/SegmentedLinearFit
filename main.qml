@@ -25,7 +25,7 @@ Window {
 
             Text {
                 anchors.centerIn: parent
-                text: "SegmentedLinearFit"
+                text: "Segmented Linear Fit"
                 font.pixelSize: 22
                 color: "white"
             }
