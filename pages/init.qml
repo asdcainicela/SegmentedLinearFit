@@ -12,13 +12,14 @@ Rectangle {
     visible: true
     width: parent
     height: parent
-    color: Design.colorPalette.dark
+    color: "#1e1e1e"
 
     property Loader rootLoader         // ← ¡esto es lo que se expone desde main!
 
 
     ColumnLayout {
         anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
         spacing: 10
 
         Button {
