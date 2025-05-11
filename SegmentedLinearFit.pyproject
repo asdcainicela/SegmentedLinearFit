@@ -6,6 +6,8 @@
         "design/qmldir",
         "design/colorPalette.qml",
         "pages/init.qml",
+        "pages/preview_data.qml",
+        "pages/results.qml",
         "logic/open_csv"
     ],
 
