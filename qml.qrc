@@ -3,6 +3,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>pages/init.qml</file>
+        <file>pages/preview_data.qml</file>
         <file>design/colorPalette.qml</file>
         <file>design/qmldir</file>
     </qresource>

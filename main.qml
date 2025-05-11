@@ -1,3 +1,4 @@
+//main.qml
 import QtQuick
 import QtQuick.Window
 
@@ -41,7 +42,11 @@ Window {
                 id: pageLoader
                 anchors.fill: parent
                 source: "pages/init.qml"
+                onLoaded: {
+                    item.rootLoader = pageLoader
+                }
             }
+
         }
     }
 }
