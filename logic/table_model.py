@@ -1,3 +1,4 @@
+#logic/table_model.py
 import logging
 from PySide6.QtCore import QAbstractTableModel, Qt, QModelIndex, Slot
 import time

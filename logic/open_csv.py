@@ -1,4 +1,4 @@
-#open_csv.py
+#logic/open_csv.py
 from PySide6.QtCore import QObject, Slot, Signal, Property
 import pandas as pd
 from .table_model import DataFrameModel
