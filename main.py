@@ -1,7 +1,7 @@
 import sys
 import os
 from pathlib import Path
-from PySide6.QtCore import QUrl
+from PySide6.QtCore import QUrl, QResource
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
@@ -9,6 +9,7 @@ from PySide6.QtQml import QQmlApplicationEngine
 from logic.open_csv import AppLogic_csv
 from logic.table_model import DataFrameModel
 
+import qml_rc   
 def main():
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
@@ -33,14 +34,17 @@ def main():
     # Obtener la ruta absoluta al directorio actual
     current_dir = Path(__file__).resolve().parent
 
-    # Importante: Registrar el directorio actual como ruta de importación QML
-    engine.addImportPath(str(current_dir))
+    # Importante: Registrar los recursos QML empaquetados si estamos ejecutando desde el ejecutable
+    if getattr(sys, 'frozen', False):  # Si el script se está ejecutando desde un ejecutable generado por PyInstaller
+        QResource.registerResource('qml_rc.py')  # Registra los recursos empaquetados
+        main_qml_path = ':/main.qml'  # Ruta de los recursos empaquetados
+    else:
+        main_qml_path = os.path.join(current_dir, "main.qml")  # Ruta relativa para desarrollo
 
-    # Cargar el archivo QML directamente desde el sistema de archivos
-    main_qml_path = os.path.join(current_dir, "main.qml")
     print(f"Intentando cargar: {main_qml_path}")
     print(f"El archivo existe: {os.path.exists(main_qml_path)}")
 
+    # Cargar el archivo QML
     engine.load(QUrl.fromLocalFile(main_qml_path))
 
     if not engine.rootObjects():

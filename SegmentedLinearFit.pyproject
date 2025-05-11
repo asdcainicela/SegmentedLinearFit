@@ -8,7 +8,9 @@
         "pages/init.qml",
         "pages/preview_data.qml",
         "pages/results.qml",
-        "logic/open_csv"
+        "logic/open_csv.py",
+        "logic/analyzer.py",
+        "logic/table_model.py"
     ],
 
     "resources": [
