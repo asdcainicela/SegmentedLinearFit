@@ -1,21 +1,25 @@
-from PySide6.QtCore import QObject, Slot, Signal
+#open_csv.py
+from PySide6.QtCore import QObject, Slot, Signal, Property
 import pandas as pd
+from .table_model import DataFrameModel
 
 class AppLogic_csv(QObject):
     dataLoaded = Signal(str)  # Para confirmar carga o error
-    previewUpdated = Signal(str, str, str)  # Para actualizar la vista previa de datos
+    previewUpdated = Signal(str, str, str)  # index, content, total
 
     def __init__(self):
         super().__init__()
         self.df = None
         self.current_row = 0
+        self._model = None  # <--- NECESARIO para inicializar
 
     @Slot(str)
     def load_csv(self, filepath):
         """ Carga el archivo CSV y actualiza la vista previa """
         try:
             self.df = pd.read_csv(filepath)
-            self.current_row = 0  # Resetear al inicio
+            self._model = DataFrameModel(self.df)  # <--- Instanciar modelo para tabla
+            self.current_row = 0
             self.update_preview()
             self.dataLoaded.emit("CSV cargado correctamente.")
         except Exception as e:
@@ -30,14 +34,16 @@ class AppLogic_csv(QObject):
 
     @Slot()
     def next_row(self):
-        """ Navegar a la siguiente fila """
         if self.df is not None and self.current_row < len(self.df) - 1:
             self.current_row += 1
             self.update_preview()
 
     @Slot()
     def previous_row(self):
-        """ Navegar a la fila anterior """
         if self.df is not None and self.current_row > 0:
             self.current_row -= 1
             self.update_preview()
+
+    @Property(QObject, constant=True)
+    def tableModel(self):
+        return self._model
